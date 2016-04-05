@@ -12,31 +12,34 @@ import time
 import cartopy.crs as ccrs
 import scipy.stats as stats
 
+start_time = time.time()
 
-def calc_fluxes(fluxes_ann, fluxes, area, ht):
+def calc_fluxes(fluxes_ann, fluxes, area, domain, timeseries):
+
     
-    # Grid Box of Interest
-    i = 80 # Longitude
-    j = 11 # Latitude
-    k = 7  # Depth
-    
+    # Area of Interest
+    x_constraint = iris.Constraint(longitude=lambda x: domain[0] < x < domain[1])
+    y_constraint = iris.Constraint(latitude=lambda y: domain[2] < y < domain[3])
+    z_constraint = iris.constraint(depth=lambda z: domain[4] < z < domain[5])
+
+    fluxes_ann = fluxes_ann.extract(x_constraint, y_constraint, z_constraint)
+
     # Print Sample Box Coordinates:
-    print fluxes_ann['temp_xflux_adv'].coord('longitude').points[i]
-    print fluxes_ann['temp_yflux_adv'].coord('latitude').points[j]
-    print fluxes_ann['temp_zflux_adv'].coord('ucell pstar').points[k]
-
+        
     for name, var in fluxes.iteritems():
         if name == 'temp_xflux_adv':
-            for i in range(0,len(fluxes_ann['temp_xflux_adv'].coord('longitude').points)):
-                fluxes_ann_new[name][:,:,:,i] = fluxes_ann[name][:,:,:,i-1] - fluxes_ann[name][:,:,:,i]
+            x_flux = fluxes_ann[name].collapsed(['depth', 'latitude'], iris.analysis.MEAN)
+            fluxes_ann[name] = x_flux[0] - x_flux[-1]
         elif name == 'temp_yflux_adv':
-            fluxes_ann_new[name] = fluxes_ann[name][:,k,j-1,i] - fluxes_ann[name][:,k,j,i]             
+            y_flux = fluxes_ann[name].collapsed(['depth', 'longitude'], iris.analysis.MEAN)
+            fluxes_ann[name] = y_flux[0] - y_flux[-1]             
         elif name =='temp_zflux_adv':
-            fluxes_ann_new[name] = fluxes_ann[name][:,k,j,i] - fluxes_ann[name][:,k-1,j,i]             
+            z_flux = fluxes_ann[name].collapsed(['latitude', 'longitude'], iris.analysis.MEAN)
+            fluxes_ann[name] = z_flux[0] - z_flux[-1]             
         else:
-            fluxes_ann_new[name] = fluxes_ann[name][:,k,j,i]                                         
+            fluxes_ann[name] = fluxes_ann[name].collapsed(['depth', 'latitude', 'longitude'], iris.analysis.SUM)                                         
 
-    return fluxes_ann
+    return flux_x
 
 
 
@@ -54,11 +57,14 @@ fluxes= {'temp_xflux_adv':'cp*rho_dxt*dyt_u_temp',
          'sw_heat':'downwelling_shortwave_flux_in_sea_water'
         }
 
+
 raw_flux = {}
 
 for name, var in fluxes.iteritems():
-    
     raw_flux[name] = iris.load_cube('~/control_aredi800/data/'+name+'.nc')
+
+    if name == 
+    raw_flux[name].coord('tcell pstar').standard_name = 'depth'
     print name
 
 
@@ -76,16 +82,4 @@ ht.remove_coord(ht.aux_coords[0])
 
 fluxes_ann = calc_fluxes(raw_flux, fluxes, area, ht)
 
-time = fluxes_ann['temp_tendency'].coord('time').points
-
-fig1 = plt.figure()
-plt.plot(fluxes_ann['temp_tendency'].data, color = 'k', lw = 1.5 ,label = 'Temperature Tendency')
-plt.plot((fluxes_ann['temp_submeso'].data+fluxes_ann['neutral_temp'].data), color = 'g', label = 'eddy flux')
-plt.plot((fluxes_ann['temp_vdiffuse_impl'].data + fluxes_ann['temp_nonlocal_KPP'].data + fluxes_ann['sw_heat'].data), color = 'r', label = 'turbulence flux')
-plt.plot((fluxes_ann['temp_xflux_adv'].data+fluxes_ann['temp_yflux_adv'].data + fluxes_ann['temp_zflux_adv'].data)/area[11, 80].data, color = 'b', label = 'advective flux')
-plt.plot((fluxes_ann['temp_xflux_adv'].data+fluxes_ann['temp_yflux_adv'].data + fluxes_ann['temp_zflux_adv'].data)/area[11,80].data +fluxes_ann['temp_submeso'].data+fluxes_ann['neutral_temp'].data+fluxes_ann['temp_vdiffuse_impl'].data + fluxes_ann['temp_nonlocal_KPP'].data + fluxes_ann['sw_heat'].data, ls = '--', color = 'k', label = 'Sum')
-plt.xlim([0,100])
-plt.xlabel('Time (years)')
-plt.ylabel("W m$\mathrm{^{-2}}$")
-plt.legend()
-plt.show()
+print("--- %s seconds ---" % (time.time() - start_time))
