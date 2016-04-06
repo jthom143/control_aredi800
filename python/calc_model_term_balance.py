@@ -14,6 +14,9 @@ import scipy.stats as stats
 
 start_time = time.time()
 
+#data_PATH = '~/control_aredi800/data/'
+data_PATH = '~/Desktop/data/'
+
 def calc_fluxes(fluxes_ann, fluxes, area, domain):
 
     
@@ -50,23 +53,33 @@ def calc_fluxes(fluxes_ann, fluxes, area, domain):
     for name, var in fluxes.iteritems():
         fluxes_ann[name] = fluxes_ann[name][t,:,:,:].extract(constraint)
 
-    fluxes_domain = {}
+        fluxes_domain= {'temp_xflux_adv':np.full_like(fluxes_ann['temp_tendency'].data, 1),
+                        'temp_yflux_adv':np.full_like(fluxes_ann['temp_tendency'].data, 1),
+                        'temp_zflux_adv':np.full_like(fluxes_ann['temp_tendency'].data, 1),
+                        'temp_tendency':np.full_like(fluxes_ann['temp_tendency'].data, 1),
+                        'neutral_temp':np.full_like(fluxes_ann['temp_tendency'].data, 1),
+                        'temp_submeso':np.full_like(fluxes_ann['temp_tendency'].data, 1),
+                        'temp_nonlocal_KPP':np.full_like(fluxes_ann['temp_tendency'].data, 1),
+                        'temp_vdiffuse_impl':np.full_like(fluxes_ann['temp_tendency'].data, 1),
+                        'sw_heat':np.full_like(fluxes_ann['temp_tendency'].data, 1)
+                        }
     
-    for i in range(0,len(fluxes_ann['temp_vdiffuse_impl'].coord('longitude').points)):
-        for j in range(0,len(fluxes_ann['temp_vdiffuse_impl'].coord('latitude').points)):
-            for k in range(0,len(fluxes_ann['temp_vdiffuse_impl'].coord('depth').points)):
+    for name, var in fluxes.iteritems():
+        print name
 
-                for name, var in fluxes.iteritems():
-                    print name
-                    if name == 'temp_xflux_adv':
-                        fluxes_domain[name][k,j,i] = fluxes_ann[name][k,j,i] - fluxes_ann[name][k,j,i+1]
+        for i in range(0,len(fluxes_ann['temp_vdiffuse_impl'].coord('longitude').points)-1):
+            for j in range(0,len(fluxes_ann['temp_vdiffuse_impl'].coord('latitude').points)-1):
+                for k in range(0,len(fluxes_ann['temp_vdiffuse_impl'].coord('depth').points)-1):
+                    if name =='temp_xflux_adv':
+                        fluxes_domain[name][k,j,i] = fluxes_ann[name][k,j,i].data - fluxes_ann[name][k,j,i+1].data
                     elif name == 'temp_yflux_adv':
-                        fluxes_domain[name][k,j,i] = fluxes_ann[name][k,j,i] - fluxes_ann[name][k,j+1,i]
+                        fluxes_domain[name][k,j,i] = fluxes_ann[name][k,j,i].data - fluxes_ann[name][k,j+1,i].data
                     elif name =='temp_zflux_adv':
-                        fluxes_domain[name][k,j,i] = fluxes_ann[name][k+1,j,i] - fluxes_ann[name][k,j,i]
+                        fluxes_domain[name][k,j,i] = fluxes_ann[name][k+1,j,i].data - fluxes_ann[name][k,j,i].data
                     else:
-                        fluxes_domain[name][k,j,i] = fluxes_ann[name][k+1, j+1, i+1]
+                        fluxes_domain[name][k,j,i] = fluxes_ann[name][k+1, j+1, i+1].data
 
+    
 
     # Calculate Area of Domain:
     area_domain = area.extract(constraint_area)
@@ -90,20 +103,19 @@ fluxes= {'temp_xflux_adv':'cp*rho_dxt*dyt_u_temp',
 raw_flux = {}
 
 for name, var in fluxes.iteritems():
-    raw_flux[name] = iris.load_cube('~/control_aredi800/data/'+name+'.nc')
+    raw_flux[name] = iris.load_cube(data_PATH+name+'.nc')
     if name =='temp_zflux_adv':
         raw_flux[name].coord('ucell pstar').standard_name = 'depth'
     else:
         raw_flux[name].coord('tcell pstar').standard_name = 'depth'
     
 
-area = iris.load_cube('~/control_aredi800/data/area_t.nc')
-area.remove_coord(area.aux_coords[0])
-area.remove_coord(area.aux_coords[0])
+area = iris.load_cube(data_PATH+'area_t.nc')
 
 domain =  [-70, -50,-70, -50, 100, 500 ]
 fluxes_ann, area_domain = calc_fluxes(raw_flux, fluxes, area, domain)
 
+'''
 temp_tendency = fluxes_ann['temp_tendency'].data
 advective_flux = (fluxes_ann['temp_xflux_adv'].data + fluxes_ann['temp_yflux_adv'].data + fluxes_ann['temp_zflux_adv'].data)/area_domain.data
 eddy_flux = fluxes_ann['temp_submeso'].data + fluxes_ann['neutral_temp'].data
@@ -115,7 +127,7 @@ print 'Advective Flux: %f' % advective_flux
 print 'Eddy Flux: %f ' % eddy_flux
 print 'Turbulent Flux: %f' % turb_flux
 print 'SUM = %f' %SUM
-
+'''
 
 print '   '
 print '   '
