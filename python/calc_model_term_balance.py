@@ -17,37 +17,63 @@ start_time = time.time()
 def calc_fluxes(fluxes_ann, fluxes, area, domain):
 
     
-    # Area of Interest
+    # Area of Interest:
     constraint = iris.Constraint(longitude=lambda x: domain[0] < x < domain[1], latitude=lambda y: domain[2] < y < domain[3], depth=lambda z: domain[4] < z < domain[5])
     constraint_area = iris.Constraint(longitude=lambda x: domain[0] < x < domain[1], latitude=lambda y: domain[2] < y < domain[3])
-    t = 0
-    
+
+    # Time of Interest:
+    t = 0    
+
     # Calculate Average Fluxes in area of interest
-        
+    '''    
     for name, var in fluxes.iteritems():
         if name == 'temp_xflux_adv':
             fluxes_ann[name] = fluxes_ann[name].extract(constraint)
-            x_flux = fluxes_ann[name][t,:,:,:].collapsed(['depth', 'latitude'], iris.analysis.MEAN)
+            x_flux = fluxes_ann[name][t,:,:,:].collapsed(['depth', 'latitude'], iris.analysis.SUM)
             fluxes_ann[name] = x_flux[0] - x_flux[-1]
         elif name == 'temp_yflux_adv':
             fluxes_ann[name] = fluxes_ann[name].extract(constraint)
-            y_flux = fluxes_ann[name][t,:,:,:].collapsed(['depth', 'longitude'], iris.analysis.MEAN)
+            y_flux = fluxes_ann[name][t,:,:,:].collapsed(['depth', 'longitude'], iris.analysis.SUM)
             fluxes_ann[name] = y_flux[0] - y_flux[-1]             
         elif name =='temp_zflux_adv':
             fluxes_ann[name] = fluxes_ann[name].extract(constraint)
-            z_flux = fluxes_ann[name][t,:,:,:].collapsed(['latitude', 'longitude'], iris.analysis.MEAN)
+            z_flux = fluxes_ann[name][t,:,:,:].collapsed(['latitude', 'longitude'], iris.analysis.SUM)
             fluxes_ann[name] = z_flux[-1] - z_flux[-0]             
         else:
             fluxes_ann[name] = fluxes_ann[name].extract(constraint)
-            fluxes_ann[name] = fluxes_ann[name][t,:,:,:].collapsed(['depth', 'latitude', 'longitude'], iris.analysis.SUM)                                         
+            fluxes_ann[name] = fluxes_ann[name][t,1:,1:,1:].collapsed(['depth', 'latitude', 'longitude'], iris.analysis.SUM)
+            
     area_domain = area.extract(constraint_area)
-    area_domain = area_domain.collapsed(['longitude', 'latitude'], iris.analysis.SUM)
+    area_domain = area_domain[:,:].collapsed(['longitude', 'latitude'], iris.analysis.SUM)
     return fluxes_ann, area_domain
+    '''
+    for name, var in fluxes.iteritems():
+        fluxes_ann[name] = fluxes_ann[name][t,:,:,:].extract(constraint)
+
+    fluxes_domain = {}
+    
+    for i in range(0,len(fluxes_ann['temp_vdiffuse_impl'].coord('longitude').points)):
+        for j in range(0,len(fluxes_ann['temp_vdiffuse_impl'].coord('latitude').points)):
+            for k in range(0,len(fluxes_ann['temp_vdiffuse_impl'].coord('depth').points)):
+
+                for name, var in fluxes.iteritems():
+                    print name
+                    if name == 'temp_xflux_adv':
+                        fluxes_domain[name][k,j,i] = fluxes_ann[name][k,j,i] - fluxes_ann[name][k,j,i+1]
+                    elif name == 'temp_yflux_adv':
+                        fluxes_domain[name][k,j,i] = fluxes_ann[name][k,j,i] - fluxes_ann[name][k,j+1,i]
+                    elif name =='temp_zflux_adv':
+                        fluxes_domain[name][k,j,i] = fluxes_ann[name][k+1,j,i] - fluxes_ann[name][k,j,i]
+                    else:
+                        fluxes_domain[name][k,j,i] = fluxes_ann[name][k+1, j+1, i+1]
 
 
+    # Calculate Area of Domain:
+    area_domain = area.extract(constraint_area)
+    area_domain = area_domain[:,:].collapsed(['longitude', 'latitude'], iris.analysis.SUM)
 
-CLIM_PATH = '/datascope/pradal-esm/newCO2_control_800/history/'
-clim_files = sorted(glob.glob(CLIM_PATH+'*ocean_month.nc'))
+    return fluxes_domain, area_domain
+
 
 fluxes= {'temp_xflux_adv':'cp*rho_dxt*dyt_u_temp',
          'temp_yflux_adv':'cp*rho*dzt*dxt*v*temp',
@@ -71,19 +97,11 @@ for name, var in fluxes.iteritems():
         raw_flux[name].coord('tcell pstar').standard_name = 'depth'
     
 
-area = iris.load_cube(clim_files[0], 'tracer cell area')
+area = iris.load_cube('~/control_aredi800/data/area_t.nc')
 area.remove_coord(area.aux_coords[0])
 area.remove_coord(area.aux_coords[0])
-hu = iris.load_cube(clim_files[0], 'ocean u-cell thickness')[0,:]
-hu.remove_coord(hu.aux_coords[0])
-hu.remove_coord(hu.aux_coords[0])
-hu.remove_coord(hu.aux_coords[0])
-ht = iris.load_cube(clim_files[0], 'cell_thickness')[0,:]
-ht.remove_coord(ht.aux_coords[0])
-ht.remove_coord(ht.aux_coords[0])
-ht.remove_coord(ht.aux_coords[0])
 
-domain =  [-60, -40,-70, -50, 100, 500 ]
+domain =  [-70, -50,-70, -50, 100, 500 ]
 fluxes_ann, area_domain = calc_fluxes(raw_flux, fluxes, area, domain)
 
 temp_tendency = fluxes_ann['temp_tendency'].data
