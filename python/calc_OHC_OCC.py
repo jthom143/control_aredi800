@@ -2,11 +2,10 @@
 Script to calculate ocean heat and carbon content
 """
 
-import iris
-import matplotlib.pyplot as plt
-import numpy as np
-
 def calc_ohc(temp, rhodzt, area):
+    import iris
+    import matplotlib.pyplot as plt
+    import numpy as np
 
     # Convert Units and multiply by rho cp to change units from C to J/m^2
     temp = temp + 274.15
@@ -24,6 +23,9 @@ def calc_ohc(temp, rhodzt, area):
     return heat, heat_sumz, heat_global
 
 def calc_occ(dic, rhodzt, area):
+    import iris
+    import matplotlib.pyplot as plt
+    import numpy as np
 
     # Convert Units and multiply by rho cp to change units from g to J/m^2
     dic = dic * rhodzt
