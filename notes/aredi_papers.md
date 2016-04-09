@@ -7,10 +7,8 @@ Model runs:
 * AREDI400: 360 years, pre-industrial GHGs and aerosols, Aredi = 400
 * AREDI1200: 360 years, pre-industrial GHGs and aerosols,  Aredi = 1200
 * AREDI2400: 360 years, pre-industrial GHGs and aerosols,  Aredi = 2400
-
 * ABER2D: Simulation using the spatially dependent distribution of the mixing coefficient from Abernathy and Marshall, 2013 with values ranging between 100-5500*
 * ABERZONAL: Zonally averaged version of ABER2D*
-
 * Historical Runs: Atmospheric CO2 followsng the impacts of circulation.
 
 Doubling CO2 runs: Atmospheric CO2 is doubled to 572 ppmv for both the air-sea fluxes and radiation schemes.
