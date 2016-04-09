@@ -27,3 +27,18 @@ Doubling CO2 simulations:
 Including the circulation changes due to changes is radiative forcing in the instantaneous doubling CO2 simulation, the spatial pattern of carbon storage remains the same as the biological-only historical simulation. In the Aredi 400 mixing simulation, the primary regi\
 on of anthropogenic carbon storage is in the N. Atlantic. As the mixing parameter increases, more anthropogenic carbon is stored in the N. Pacific. This increased storage is due to the higher mixing destabilizing the halocline and allows old waters to come up to the su\
 rface and take up anthropogenic carbon (NOT SHOWN). year  the historical trajectory with respect to air-sea fluxes, but not to radiation. 
+
+### Pradal & Gnanadesikan, 2014: How does the Redi parameter for mesoscale mixing impact global climate in an Earth System Model?
+
+Model Runs:   
+* AREDI800: 1500 years, pre-industrial GHGs and aerosols, Aredi = 800, (not sure about ozone)  
+* AREDI400: 500 years, pre-industrial GHGs and aerosols, Aredi = 400  
+* AREDI1200: 500 years, pre-industrial GHGs and aerosols,  Aredi = 1200  
+* AREDI2400: 500 years, pre-industrial GHGs and aerosols,  Aredi = 2400  
+
+Results:   
+Bulk of the changes occur in the first 50 years of each run. The last 100 years are used to establish a climatology. 
+
+As Aredi changes, there are associated changes in surface air temperature (SAT), sea surface temperature (SST), air temperature over land, absorbed short-wave radiation, outgoing long-wave radiation (OLR), and precipitation. As Aredi increases, the oceanic and land temperatures and precipitation increase as well. This is due to an increase in the absorbed short wave radiation. The bulk of these changes occur over the North Atlantic and Southern Ocean. 
+
+This high-latitude warming can be explained in-part by an increase in the diffusive pole-ward heat transport as Aredi is increased. 
