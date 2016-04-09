@@ -7,17 +7,16 @@ Ocean carbon and heat uptake and storage are very important processes in regulat
 ### Previous Papers using Aredi Simulation Suite: 
 1.	Gnanadesikan et al, 2015: Isopycnal mixing by mesoscale eddies significantly impacts oceanic anthropogenic carbon uptake.
 
-Model runs: 
-AREDI800: 1500 years, pre-industrial GHGs and aerosols, Aredi = 800, (not sure about ozone)
-AREDI400: 360 years, pre-industrial GHGs and aerosols, Aredi = 400
-AREDI1200: 360 years, pre-industrial GHGs and aerosols,  Aredi = 1200
-AREDI2400: 360 years, pre-industrial GHGs and aerosols,  Aredi = 2400
+Model runs:   
+* AREDI800: 1500 years, pre-industrial GHGs and aerosols, Aredi = 800, (not sure about ozone)  
+* AREDI400: 360 years, pre-industrial GHGs and aerosols, Aredi = 400  
+* AREDI1200: 360 years, pre-industrial GHGs and aerosols,  Aredi = 1200  
+* AREDI2400: 360 years, pre-industrial GHGs and aerosols,  Aredi = 2400 
 
-ABER2D: Simulation using the spatially dependent distribution of the mixing coefficient from Abernathy and Marshall, 2013 with values ranging between 100-5500* 
+* ABER2D: Simulation using the spatially dependent distribution of the mixing coefficient from Abernathy and Marshall, 2013 with values ranging between 100-5500*     
+* ABERZONAL: Zonally averaged version of ABER2D*  
 
-ABERZONAL: Zonally averaged version of ABER2D*
-
-Historical Runs: Atmospheric CO2 follows the historical trajectory with respect to air-sea fluxes, but not to radiation. → Therefore oceanic circulation is identical between the historical and control simulations. Results in passive anthropogenic carbon uptake ignoring the impacts of circulation. 
+* Historical Runs: Atmospheric CO2 follows the historical trajectory with respect to air-sea fluxes, but not to radiation. → Therefore oceanic circulation is identical between the historical and control simulations. Results in passive anthropogenic carbon uptake ignoring the impacts of circulation.   
 
 Doubling CO2 runs: Atmospheric CO2 is doubled to 572 ppmv for both the air-sea fluxes and radiation schemes. 
 
