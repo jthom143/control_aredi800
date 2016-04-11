@@ -29,7 +29,8 @@ We use the GFDL ESM2Mc, a coarse resolution configuration of the GFDL ESM2Mc. We
 
 ## Current Results: 
 1. Simply changing the along-isopycnal mixing parameterization significantly changes the convective variability in the GCM. 
-<img src="paper_outline_figures/aredi_heat_depth.png" alt="alt text" width="400">
+
+<img align="right" img src="paper_outline_figures/aredi_heat_depth.png" alt="alt text" width="400">
 Annually-averaged Weddell Sea subsurface temperature for different mixing simulations. Black line indicates average MLD. Low-mixing simulation (Aredi = 400 m2s-1) show periodic deep convection events in the Weddell Sea with periods of no convection where subsurface heat build up. High mixing simulation (Aredi = 2400 m2s-1) shows constant convection with no subsurface heat build up.
 
 2. 
