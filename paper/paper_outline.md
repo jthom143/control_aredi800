@@ -5,7 +5,7 @@
 Ocean carbon and heat uptake and storage are very important processes in regulating the s climate. As shown in Frolicher et al. (2015) there is considerable uncertainty in carbon and heat uptake and storage as represented by CMIP5 models, especially in the Southern Ocean. A further complicating factor is open ocean deep convection in the Weddell Sea. Often referred to as the Weddell polynya, these deep convective events are important for the formation of Antarctic Bottom water and the global heat and carbon budget (Killworth, 1983). Climate models simulate deep convection oscillations to varying degrees and frequencies (de Lavergne et al., 2014); however, with few observational constraints it is difficult to determine how well modeling groups represent Southern Ocean dynamics.
 
 ### Previous Papers using Aredi Simulation Suite: 
-1.	***Gnanadesikan et al, 2015: Isopycnal mixing by mesoscale eddies significantly impacts oceanic anthropogenic carbon uptake.***
+***Gnanadesikan et al, 2015: Isopycnal mixing by mesoscale eddies significantly impacts oceanic anthropogenic carbon uptake.***
 
 Results:
 
@@ -21,7 +21,9 @@ Including the circulation changes due to changes is radiative forcing in the ins
 
 
 ## Methods: 
-### Aredi Simulations: 
+### Aredi Simulations:  
+We use the GFDL ESM2Mc, a coarse resolution configuration of the GFDL ESM2Mc. We use different parameterizations for the lateral mixing coefficient, Aredi (Redi, 1982), and mesoscale eddy advenction, Gent-McWilliams (Gent & McWilliams, 1990), to asses the impact on the heat and carbon content. Here we analyze 4 pre-industrial control  Three simulations where Aredi is constant at 400, 800, and 2400 m2
+GM minimum value is increased from 200 to 600 m2s-1 (Aredi = 800 m2s-1)1
 
 
 ## Current Results: 
