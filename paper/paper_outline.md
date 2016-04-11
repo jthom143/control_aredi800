@@ -53,9 +53,15 @@ Annually-averaged Weddell Sea subsurface temperature for different mixing simula
 
 ***While raising the GM minimum value stops Weddell Sea convection, there is not a change in the average ocean circulation over the period of the model run. Therefore changing the parameterization changes convection, but not the overall dynamics.*** 
 
-<img align="left" img src="paper_outline_figures/aredi_temperature_climatologies.png" alt="alt text" width="400">
-<img align="right" img src="paper_outline_figures/aredi_salinity_climatologies.png" alt="alt text" width="400">
-<img align="left" img src="paper_outline_figures/aredi_dic_climatologies.png" alt="alt text" width="400">
-<img align="right" img src="paper_outline_figures/aredi_age_climatologies.png" alt="alt text" width="400">
+Temperature Climatology               |  Salinity Climatology
+:-------------------------:|:-------------------------:
+![](paper_outline_figures/aredi_temperature_climatologies.png) | ![](paper_outline_figures/aredi_salinity_climatologies.png)
+
+DIC Climatology               |  Age Climatology
+:-------------------------:|:-------------------------:
+![](paper_outline_figures/aredi_dic_climatologies.png) | ![](paper_outline_figures/aredi_age_climatologies.png)
+
+&nbsp; 
+
 
 ## To Do List: 
