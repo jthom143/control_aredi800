@@ -28,5 +28,5 @@ We use the GFDL ESM2Mc, a coarse resolution configuration of the GFDL ESM2Mc. We
 
 
 ## Current Results: 
-
+<img src="paper_outline_figures/aredi_heat_depth.png" alt="alt text" width="400">
 ## To Do List: 
