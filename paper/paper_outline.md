@@ -6,16 +6,10 @@ Ocean carbon and heat uptake and storage are very important processes in regulat
 
 ### Previous Papers using Aredi Simulation Suite: 
 ***Gnanadesikan et al, 2015: Isopycnal mixing by mesoscale eddies significantly impacts oceanic anthropogenic carbon uptake.***
+Key Points: 
+Carbon uptake varies significantly across historical model simulations that use different constant values of the lateral mixing coefficient, Aredi. The highest carbon uptake occurs in a simulation that uses a high mixing coefficient (2400m^2s^-1), while the lowest carbon uptake occurs in the simulation that uses a low coefficient (400 m^2s^-1). Under instantaneous doubling CO2 simulations, there is a 21% range in carbon uptake across the aredi simulations.
 
-Results:
 
-Results from historical-ish simulations: 
-Aredi 400 mixing simulation results in the least amount of anthropogenic carbon flux by the ocean (2.4 Gt/yr in final year → year 2000?). Aredi 2400 mixing simulation results in the most anthropogenic carbon flux (2.8 Gt/yr). Larger difference seen in Southern Ocean (Figures 2a and b). Aberzonal and Aber2D lateral mixing estimates lie between these two extreme simulations. Low lateral mixing coefficient in Southern Ocean is more important than the high values in the gyre interior with respect to carbon flux. 
-
-Consistent with the carbon flux, the total inventory of anthropogenic carbon (at year 1995) is largest for the Aredi 2400 simulation (118.7 GtC) and smallest for the Aredi 400 simulation (102 GtC) with the Abernathy estimates falling between the two. This range is about half of the variability across the CMIP5 models, with these estimates being at the higher end.  
-
-Doubling CO2 simulations:
-Including the circulation changes due to changes is radiative forcing in the instantaneous doubling CO2 simulation, the spatial pattern of carbon storage remains the same as the biological-only historical simulation. In the Aredi 400 mixing simulation, the primary region of anthropogenic carbon storage is in the N. Atlantic. As the mixing parameter increases, more anthropogenic carbon is stored in the N. Pacific. This increased storage is due to the higher mixing destabilizing the halocline and allows old waters to come up to the surface and take up anthropogenic carbon (NOT SHOWN).
 
 ### Aim:
 

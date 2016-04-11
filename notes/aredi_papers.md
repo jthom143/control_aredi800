@@ -22,6 +22,10 @@ Consistent with the carbon flux, the total inventory of anthropogenic carbon (at
 Doubling CO2 simulations:
 Including the circulation changes due to changes is radiative forcing in the instantaneous doubling CO2 simulation, the spatial pattern of carbon storage remains the same as the biological-only historical simulation. In the Aredi 400 mixing simulation, the primary region of anthropogenic carbon storage is in the N. Atlantic. As the mixing parameter increases, more anthropogenic carbon is stored in the N. Pacific. This increased storage is due to the higher mixing destabilizing the halocline and allows old waters to come up to the surface and take up anthropogenic carbon (NOT SHOWN). year  the historical trajectory with respect to air-sea fluxes, but not to radiation. 
 
+Key Points: 
+Carbon uptake varies significantly across historical model simulations that use different constant values of the lateral mixing coefficient, Aredi. The highest carbon uptake occurs in a simulation that uses a high mixing coefficient (2400m^2s^-1), while the lowest carbon uptake occurs in the simulation that uses a low coefficient (400 m^2s^-1). Under instantaneous doubling CO2 simulations, there is a 21% range in carbon uptake across the aredi simulations.
+
+
 ### Pradal & Gnanadesikan, 2014: How does the Redi parameter for mesoscale mixing impact global climate in an Earth System Model?
 
 Model Runs:   
@@ -35,4 +39,8 @@ Bulk of the changes occur in the first 50 years of each run. The last 100 years 
 
 As Aredi changes, there are associated changes in surface air temperature (SAT), sea surface temperature (SST), air temperature over land, absorbed short-wave radiation, outgoing long-wave radiation (OLR), and precipitation. As Aredi increases, the oceanic and land temperatures and precipitation increase as well. This is due to an increase in the absorbed short wave radiation. The bulk of these changes occur over the North Atlantic and Southern Ocean. 
 
-This high-latitude warming can be explained in-part by an increase in the diffusive pole-ward heat transport as Aredi is increased. 
+This high-latitude warming can be explained in-part by an increase in the diffusive pole-ward heat transport as Aredi is increased. This increase in poleward heat transport by neutral diffusions in opposed, however, but a decrease in advective pole-ward heat transport, resulting in a very small increase in total pole-ward heat transport. 
+
+The changes in radatiave fluxes are much larger than the changes in pole-ward ocean heat transport. 
+Key Points: 
+Changing the Aredi parameterization in the GFDL ESM2Mc model has a significant impact on sea surface temperature (SST). When the lateral mixing coefficient is increased to 2400 m^2s^-1, the global SST increases by about 1C relative to a low mixing coefficient (400 m^2s^-1), but stronger warming occurs regionally. 
