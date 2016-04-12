@@ -21,6 +21,8 @@ Changing the Aredi parameterization in the GFDL ESM2Mc model has a significant i
 
 ### Aim:
 
+Quantify the effect the mesoscale eddy parameterizations have on convective variability in GFDL ESM2Mc. 
+
 
 ### Aredi Simulations:  
 We use the GFDL ESM2Mc, a coarse resolution configuration of the GFDL ESM2Mc. We use different parameterizations for the lateral mixing coefficient, Aredi (Redi, 1982), and mesoscale eddy advenction, Gent-McWilliams (Gent & McWilliams, 1990), to asses the impact on the heat and carbon content. Here we analyze 4 pre-industrial control simulations: 
