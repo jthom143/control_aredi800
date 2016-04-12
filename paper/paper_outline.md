@@ -15,6 +15,11 @@ Carbon uptake varies significantly across historical model simulations that use 
 Key Points:   
 Changing the Aredi parameterization in the GFDL ESM2Mc model has a significant impact on sea surface temperature (SST). When the lateral mixing coefficient is increased to 2400 m^2s^-1, the global SST increases by about 1C relative to a low mixing coefficient (400 m^2s^-1), but stronger warming occurs regionally. Increasing the along-isopycnal mixing coefficient results in an increase in pole-ward salt transport through neutral diffusion in the top few hundred meters of the water column. This increase in pole-ward transport of salt results in the polar surface waters getting saltier, therefore decreasing the strength of the polar halocline and allowing more warm waters to reach the surface from the sub-surface. These warm waters melt the sea ice, and results in more shortwave radiation absorbtion by the ocean, thus warming the polar oceans by a significant amount. 
 
+***Gnanadesikan et al., 2015: Exploring the isopycnal mixing and helium-heat paradoxes in a suite of Earth System Models***
+
+
+***Gnanadesikan et al., in prep: Changes in the isopycnal mixing coefficient produce significant, but compensated, changes in ocean carbon pumps.***
+
 ### Aim:
 
 
