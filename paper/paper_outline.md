@@ -22,14 +22,13 @@ Changing the Aredi parameterization in the GFDL ESM2Mc model has a significant i
 ### Aim:
 
 
-## Methods: 
 ### Aredi Simulations:  
 We use the GFDL ESM2Mc, a coarse resolution configuration of the GFDL ESM2Mc. We use different parameterizations for the lateral mixing coefficient, Aredi (Redi, 1982), and mesoscale eddy advenction, Gent-McWilliams (Gent & McWilliams, 1990), to asses the impact on the heat and carbon content. Here we analyze 4 pre-industrial control simulations: 
 * Three simulations where Aredi is constant at 400, 800, and 2400 m2  
 * GM minimum value is increased from 200 to 600 m2s-1 (Aredi = 800 m2s-1)
 
 
-## Current Results: 
+### Current Results: 
 ***Simply changing the along-isopycnal mixing parameterization significantly changes the convective variability in the GCM. Additionally, by changing the GM miximum value, convection ceases in the Weddell Sea.*** 
 
 <img align="right" img src="paper_outline_figures/aredi_heat_depth.png" alt="alt text" width="400">
