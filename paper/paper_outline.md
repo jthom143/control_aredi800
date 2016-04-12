@@ -9,7 +9,9 @@ Ocean carbon and heat uptake and storage are very important processes in regulat
 Key Points: 
 Carbon uptake varies significantly across historical model simulations that use different constant values of the lateral mixing coefficient, Aredi. The highest carbon uptake occurs in a simulation that uses a high mixing coefficient (2400m^2s^-1), while the lowest carbon uptake occurs in the simulation that uses a low coefficient (400 m^2s^-1). Under instantaneous doubling CO2 simulations, there is a 21% range in carbon uptake across the aredi simulations.
 
-
+***Pradal & Gnanadesikan, 2014: How does the Redi parameter for mesoscale mixing impact global climate in an Earth System Model?***
+Key Points: 
+Changing the Aredi parameterization in the GFDL ESM2Mc model has a significant impact on sea surface temperature (SST). When the lateral mixing coefficient is increased to 2400 m^2s^-1, the global SST increases by about 1C relative to a low mixing coefficient (400 m^2s^-1), but stronger warming occurs regionally. Increasing the along-isopycnal mixing coefficient results in an increase in pole-ward salt transport through neutral diffusion in the top few hundred meters of the water column. This increase in pole-ward transport of salt results in the polar surface waters getting saltier, therefore decreasing the strength of the polar halocline and allowing more warm waters to reach the surface from the sub-surface. These warm waters melt the sea ice, and results in more shortwave radiation absorbtion by the ocean, thus warming the polar oceans by a significant amount. 
 
 ### Aim:
 
