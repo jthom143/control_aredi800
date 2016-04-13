@@ -69,15 +69,14 @@ DIC Climatology               |  Age Climatology
 
 ## To Do List: 
 
-1. Complete surface flux analysis 
-   - Quanitfy heat flux for each simulation. 
+1. Surface Impacts
+   - Quanitfy surface heat flux for each simulation. 
    - Quantify changes due to cloud albedo. 
+   - Changes in SH westerly wind strength/location. 
+   - Sea Ice changes
 
-2. Complete interior heat flux analysis. 
-   - Calculate pole-ward heat transport. 
-
-3. Water mass analysis 
-    - Calculate AABW and AAIW formation rates. 
-    - Age of each water mass. 
+2. Ocean Interior Changes 
+   - Water mass formation rates/ages. 
+   - How does the ocean circulation change?
 
  
