@@ -70,8 +70,8 @@ DIC Climatology               |  Age Climatology
 ## To Do List: 
 
 1. Complete surface flux analysis 
-- Quanitfy heat flux for each simulation. 
-- Quantify changes due to cloud albedo. 
+   - Quanitfy heat flux for each simulation. 
+   - Quantify changes due to cloud albedo. 
 
 2. Complete interior heat flux analysis. 
 
