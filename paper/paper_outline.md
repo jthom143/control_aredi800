@@ -21,7 +21,7 @@ Changing the Aredi parameterization in the GFDL ESM2Mc model has a significant i
 
 ### Aim:
 
-Quantify the effect the mesoscale eddy parameterizations have on convective variability in GFDL ESM2Mc. 
+Quantify the effect the mesoscale eddy parameterizations have on convective variability and heat and carbon uptake. Determine what mechanism governs heat and carbon uptake, and asses how this changes with different parameterization settings. 
 
 
 ### Aredi Simulations:  
