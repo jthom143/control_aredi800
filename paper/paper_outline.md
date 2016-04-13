@@ -74,5 +74,10 @@ DIC Climatology               |  Age Climatology
    - Quantify changes due to cloud albedo. 
 
 2. Complete interior heat flux analysis. 
+   - Calculate pole-ward heat transport. 
 
-3. 
+3. Water mass analysis 
+    - Calculate AABW and AAIW formation rates. 
+    - Age of each water mass. 
+
+ 
