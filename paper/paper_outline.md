@@ -52,6 +52,7 @@ Ocean Carbon Content      |  Ocean Heat Content
 ![](paper_outline_figures/aredi_occ_timeseries.png)  |  ![](paper_outline_figures/aredi_ohc_timeseries.png)
 Global ocean (solid line) and Southern Ocean (dashed line) carbon content for various aredi simulations. | Global ocean (solid line) and Southern Ocean (dashed line) heat content for various aredi simulations.  .
 
+Global carbon content and Southern Ocean (50-70S) carbon content are very closely correlated and have similar magnitude. This indicates that the global carbon content variability is driven by the Southern Ocean. This relationship is strongest when Aredi=800, and less robust when Aredi=2400. Global ocean heat content on the other hand is anti-correlated with Southern Ocean heat content.  
 
 ## To Do List: 
 
