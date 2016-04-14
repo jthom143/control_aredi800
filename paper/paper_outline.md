@@ -47,6 +47,11 @@ DIC Climatology               |  Age Climatology
 ### Current Results: 
 
 
+Ocean Carbon Content      |  Ocean Heat Content 
+:-------------------------:|:-------------------------:
+![](~/notes/figures/aredi_occ_timeseries.png)  |  ![](~/notes/figures/aredi_ohc_timeseries.png)
+Global ocean (solid line) and Southern Ocean (dashed line) carbon content for various aredi simulations. | Global ocean (solid line) and Southern Ocean (dashed line) heat content for various aredi simulations.  .
+
 
 ## To Do List: 
 
