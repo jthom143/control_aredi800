@@ -1,5 +1,6 @@
 # Paper Outline 
-
+## Introduction 
+---------------------------------------
 ### Motivation: 
 Ocean carbon and heat uptake and storage are very important processes in regulating the s climate. As shown in Frolicher et al. (2015) there is considerable uncertainty in carbon and heat uptake and storage as represented by CMIP5 models, especially in the Southern Ocean. A further complicating factor is open ocean deep convection in the Weddell Sea. Often referred to as the Weddell polynya, these deep convective events are important for the formation of Antarctic Bottom water and the global heat and carbon budget (Killworth, 1983). Climate models simulate deep convection oscillations to varying degrees and frequencies (de Lavergne et al., 2014); however, with few observational constraints it is difficult to determine how well modeling groups represent Southern Ocean dynamics.
 
@@ -23,7 +24,8 @@ Changing the Aredi parameterization in the GFDL ESM2Mc model has a significant i
 
 Quantify the effect the mesoscale eddy parameterizations have on convective variability and heat and carbon uptake. Determine what mechanism governs heat and carbon uptake, and asses how this changes with different parameterization settings. 
 
-
+## Methods
+---------------------------------------
 ### Aredi Simulations:  
 We use the GFDL ESM2Mc, a coarse resolution configuration of the GFDL ESM2Mc. We use different parameterizations for the lateral mixing coefficient, Aredi (Redi, 1982), and mesoscale eddy advenction, Gent-McWilliams (Gent & McWilliams, 1990), to asses the impact on the heat and carbon content. Here we analyze 4 pre-industrial control simulations: 
 * Three simulations where Aredi is constant at 400, 800, and 2400 m2  
@@ -40,13 +42,14 @@ DIC Climatology               |  Age Climatology
 :-------------------------:|:-------------------------:
 ![](paper_outline_figures/aredi_dic_climatologies.png) | ![](paper_outline_figures/aredi_age_climatologies.png)
 
-
+## Results
+---------------------------------------
 ### Current Results: 
 
 
 
 ## To Do List: 
-
+---------------------------------------
 1. Surface Impacts
    - Quanitfy surface heat flux for each simulation. 
    - Quantify changes due to cloud albedo. 
