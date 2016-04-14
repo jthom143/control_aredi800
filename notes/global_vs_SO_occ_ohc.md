@@ -3,4 +3,4 @@ Plotted the ocean carbon content and ocean heat content for the different aredi 
 
 Ocean Carbon Content                |  Ocean Heat Content 
 :-------------------------:|:-------------------------:
-![](figures/aredi_occ_timeseries.png)  |  ![](files/aredi_ohc_timeseries.png)
+![](figures/aredi_occ_timeseries.png)  |  ![](figures/aredi_ohc_timeseries.png)
