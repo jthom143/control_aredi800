@@ -17,3 +17,10 @@ Created functions for calculating OHC and OCC (python/calc_OHC_OCC.py). Re-creat
 Aim to finish this analysis by Saturday evening. 
 
 Tonight: work on outlining next paper. 
+
+
+### March 13, 2016
+Talked with Darryn about next aredi paper. He suggested instead of focusing on the effect of changing aredi, focus on the difference in global vs Southern Ocean heat and carbon signals in the different model runs and the different convective variability. 
+
+Next couple of steps: 
+1. Make plots of global and Southern ocean heat and carbon content for all simulations. 
