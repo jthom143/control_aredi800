@@ -7,7 +7,7 @@ import iris.analysis.cartography
 import iris.coord_categorisation
 import matplotlib.pyplot as plt
 import numpy as np
-import numpy as np
+import numpy.ma as ma
 import cartopy.crs as ccrs
 import matplotlib
 from netCDF4 import Dataset
@@ -16,7 +16,7 @@ from scipy import signal
 import sys # access system routines
 sys.path.append('~/control_aredi800/python')
 from calc_OHC_OCC import calc_occ
-
+from calc_convective_periods import convect
 
 ## Load Data ###
 '''
@@ -33,6 +33,7 @@ PATHS={'aredi_400':'~/control_aredi800/data/newCO2_control_400_ag/',
 dic = {}
 rhodzt = {}
 area = {}
+mld = {}
 
 print 'loading data for:'
 for name, PATH in PATHS.iteritems():
@@ -40,6 +41,7 @@ for name, PATH in PATHS.iteritems():
         dic[name] = iris.load_cube(PATH+'dic.nc')
         rhodzt[name] = iris.load_cube(PATH+'rho_dzt.nc')
         area[name] = iris.load_cube(PATH+'area_t.nc')
+	mld[name] = iris.load_cube(PATH+'mld.nc')
 
 	if name == 'aredi_800':
 	    dic[name] = dic[name][-500:]
@@ -73,7 +75,11 @@ for name in names:
 	carbon_SH_anomaly[name] = carbon_SH[name] - mean_SH
 	carbon_SH_detrend[name] = signal.detrend(carbon_SH_anomaly[name].data)
 
-							
+## Calculate convective years ##
+year_convect = {}
+
+for name in names:
+	year_convect[name], mld_convect, area_convect = convect(mld[name], area[name])
 
 # Figure
 fig1 = plt.figure(figsize = (5,10))
@@ -91,4 +97,39 @@ ax3.scatter((global_carbon_detrend['aredi_2400'])/1e15, carbon_SH_detrend['aredi
 ax3.set_xlabel('Global Carbon Content Anomaly [Pg C]')
 plt.title('(c) A$_{redi}$ = 2400 m$^2$s$^{-1}$', fontsize = 11)
 plt.savefig('notes/aredi_occ_scatter.png', bbox_inches='tight')
+
+
+# Figure - highlight convective times
+a_400 = ma.masked_where(ma.getmask(year_convect['aredi_400']), global_carbon_detrend['aredi_400'])
+b_400 = ma.masked_where(ma.getmask(year_convect['aredi_400']), carbon_SH_detrend['aredi_400'])
+
+a_800 = ma.masked_where(ma.getmask(year_convect['aredi_800']), global_carbon_detrend['aredi_800'])
+b_800 = ma.masked_where(ma.getmask(year_convect['aredi_800']), carbon_SH_detrend['aredi_800'])
+
+a_2400 = ma.masked_where(ma.getmask(year_convect['aredi_2400']), global_carbon_detrend['aredi_2400'])
+b_2400 = ma.masked_where(ma.getmask(year_convect['aredi_2400']), carbon_SH_detrend['aredi_2400'])
+
+fig1 = plt.figure(figsize = (5,10))
+ax1 = fig1.add_axes([0.15, 0.75, 0.75, 0.15])
+ax1.scatter((global_carbon_detrend['aredi_400'])/1e15, carbon_SH_detrend['aredi_400']/1e15, marker ='.', color = 'k') 
+ax1.scatter(a_400/1e15, b_400/1e15, marker = '.', color = '#368BC1')
+plt.title('(a) A$_{redi}$ = 400 m$^2$s$^{-1}$', fontsize = 11) 
+
+ax2 = fig1.add_axes([0.15, 0.5, 0.75, 0.15])
+ax2.scatter((global_carbon_detrend['aredi_800'])/1e15, carbon_SH_detrend['aredi_800']/1e15, marker ='.', color = 'k')
+ax2.scatter(a_800/1e15, b_800/1e15, marker = '.', color = '#368BC1')
+ax2.set_ylabel('SH Carbon Content Anomaly [Pg C]')
+plt.title('(b) A$_{redi}$ = 800 m$^2$s$^{-1}$', fontsize = 11)
+
+ax3 = fig1.add_axes([0.15, 0.25, 0.75, 0.15])
+ax3.scatter((global_carbon_detrend['aredi_2400'])/1e15, carbon_SH_detrend['aredi_2400']/1e15, marker ='.', color = 'k')
+ax3.scatter(a_2400/1e15, b_2400/1e15, marker = '.', color = '#368BC1')
+ax3.set_xlabel('Global Carbon Content Anomaly [Pg C]')
+plt.title('(c) A$_{redi}$ = 2400 m$^2$s$^{-1}$', fontsize = 11)
+plt.savefig('notes/aredi_occ_scatter_wconv.png', bbox_inches='tight')
+
+
+
+
+
 plt.show()
