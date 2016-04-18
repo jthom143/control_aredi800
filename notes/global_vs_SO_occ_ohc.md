@@ -7,6 +7,6 @@ Ocean Carbon Content      |  Ocean Heat Content
 Global ocean (solid line) and Southern Ocean (dashed line) carbon content for various aredi simulations. | Global ocean (solid line) and Southern Ocean (dashed line) heat content for various aredi simulations.  .
 
 To better visualize the relationship between the global and Southern Ocean heat/carbon content the scatter plot of these variables is shown below. The relationship for the Aredi = 800 carbon content is very strong. Less of an obvious relationship for the other mixing cases.   
-Ocean Carbon Content      |  Ocean Heat Content
-:-------------------------:|:-------------------------:
+Ocean Carbon Content      |  Ocean Heat Content  
+:-------------------------:|:-------------------------:  
 ![](figures/aredi_occ_scatter.png)  |  ![](figures/aredi_ohc_scatter.png)
