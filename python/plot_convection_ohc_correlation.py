@@ -184,10 +184,10 @@ for name in names:
         mean_SH = heat_SH[name].collapsed('time', iris.analysis.MEAN)
         heat_SH_anomaly[name] = heat_SH[name] - mean_SH
         heat_SH_detrend[name] = signal.detrend(heat_SH_anomaly[name].data)
-                                                    
+
 # Save variables for later use
 for name in names:
-    np.save(name+'mld', mld_ws[name])
+    np.save(name+'mld', mld_ws[name].data)
     np.save(name+'global_heat', global_heat_detrend[name])
     np.save(name+'sh_heat', heat_SH_detrend[name])
 
@@ -213,7 +213,7 @@ for name in names:
     min_lag[name] = lags[min_corr[name]]
 
 fig9 = plt.figure()
-plt.xcorr(x['aredi_400'], y['aredi_400'], maxlags = 100, usevlines = False)  
+plt.xcorr(x['aredi_400'], y['aredi_400'], maxlags = 100, usevlines = False)
 plt.xcorr(x['aredi_400'], y2['aredi_400'], maxlags = 100, usevlines = False)
 
 fig9 = plt.figure()
@@ -225,10 +225,3 @@ plt.xcorr(x['aredi_2400'], y['aredi_2400'], maxlags = 100, usevlines = False)
 plt.xcorr(x['aredi_2400'], y2['aredi_2400'], maxlags = 100, usevlines = False)
 '''
 plt.show()
-
-
-
-
-
-
-
