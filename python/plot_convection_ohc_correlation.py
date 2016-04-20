@@ -83,7 +83,7 @@ for name in names:
     mld_ws[name].coord('longitude').guess_bounds()
     grid_areas = iris.analysis.cartography.area_weights(mld_ws[name])
     mld_ws[name] = mld_ws[name].collapsed(['latitude', 'longitude'], iris.analysis.MEAN, weights=grid_areas)
-
+'''
 # Plot Weddell Sea MLD
 ## Detrended
 fig1 = plt.figure(figsize = (6, 8))
@@ -104,7 +104,7 @@ plt.savefig('notes/figures/aredi_mld_timeseries.png', bbox_inches='tight')
 
 
 
-'''
+
 fig2 = plt.figure()
 data1 = mld_ws['aredi_400'].data
 x = np.arange(0, 810, 10)
@@ -186,10 +186,12 @@ for name in names:
         heat_SH_detrend[name] = signal.detrend(heat_SH_anomaly[name].data)
 
 # Save variables for later use
+
 for name in names:
-    np.save(name+'mld', mld_ws[name].data)
-    np.save(name+'global_heat', global_heat_detrend[name])
-    np.save(name+'sh_heat', heat_SH_detrend[name])
+    mld_save = np.ma.filled(mld_ws[name].data)
+    np.save(name+'_mld', mld_save)
+    np.save(name+'_global_heat', global_heat_detrend[name])
+    np.save(name+'_sh_heat', heat_SH_detrend[name])
 
 '''
 # Find the maximum correlation
