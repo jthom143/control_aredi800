@@ -1,0 +1,6 @@
+
+# Generate pdf with pandoc
+
+
+paper_outline.pdf : paper_outline.md
+	pandoc paper_outline.md --latex-engine=xelatex --variable mainfont="Palatino" --filter pandoc-fignos  -o $@
