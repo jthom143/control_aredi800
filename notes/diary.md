@@ -33,6 +33,8 @@ Met with Darryn to talk about refining my question and lay out the next steps le
 **What causes ocean heat and carbon content variability in GFDL ESM2Mc?**   
 First few steps:   
 1. Plot global OHC and OCC timeseries for each simulation. Break up the world oceans into ~5 different regions and plot the OHC/OCC. This will help identify which regions are causing the variability.  
-2. Look into detrending process used for the 400 and 2400 simulations. Is my detrending causing the century-scale variability seen in the global heat and carbon? 
-3. First work on the carbon content and put together a picture of what is going on (i.e. convection causes SO variability which swamps global signal...). 
-4. Then work on heat content and put together crude picture of mechanisms causing variability. 
+2. Look into detrending process used for the 400 and 2400 simulations. Is my detrending causing the century-scale variability seen in the global heat and carbon?   
+3. First work on the carbon content and put together a picture of what is going on (i.e. convection causes SO variability which swamps global signal...).  
+4. Then work on heat content and put together crude picture of mechanisms causing variability.  
+
+Aim for paper draft by end of May? 
