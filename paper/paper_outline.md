@@ -43,7 +43,8 @@ Global ocean (solid line) and Southern Ocean (dashed line) carbon content for va
 Global carbon content and Southern Ocean (50-70S) carbon content are very closely correlated and have similar magnitude. This indicates that the global carbon content variability is driven by the Southern Ocean. This relationship is strongest when Aredi=800, and less robust when Aredi=2400. Global ocean heat content on the other hand is anti-correlated with Southern Ocean heat content.  
 
 ## To Do List:
-1. Complete GMmin simulation (currently on year )
+1. Complete GMmin simulation (currently on year 375)
+2. Quantify variability in heat and carbon content
 2. Quantify convection and convective variability.  
    - Convection criterion (MLD is pretty subjective. Maybe MLD+sub surface temperature?)
    - Quantify the timescales of convection.
