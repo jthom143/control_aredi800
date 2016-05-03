@@ -59,5 +59,6 @@ lats = tropics.coord('latitude').points
 lons = tropics.coord('longitude').points
 data = tropics[0,0,:,:].data *0 + 4
 ax.contourf(lons, lats, data, clevs, cmap = map)
+plt.savefig('/home/jthom143/control_aredi800/notes/figures/regions.png')
 
 plt.show()
