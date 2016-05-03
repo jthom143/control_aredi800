@@ -7,6 +7,6 @@ Starting with Aredi800 simulation: Broke up the global ocean into 6 different re
 |![](figures/regions.png)
 
 
-| Carbon Content| Heat Content |
-:----------:----------------:
-|![](figures/occ_regions.png)|![](figures/ohc_regions.png)
+ Carbon Content| Heat Content 
+:----------:|:----------------:
+![](figures/occ_regions.png)|![](figures/ohc_regions.png)
