@@ -7,6 +7,6 @@ Starting with Aredi800 simulation: Broke up the global ocean into 6 different re
 |![](figures/regions.png)
 
 
-| Figure 1 |
+| Figure 2 |
 :----------:
 |![](figures/occ_regions.png)
