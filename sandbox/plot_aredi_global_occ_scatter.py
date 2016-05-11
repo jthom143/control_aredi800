@@ -27,7 +27,7 @@ from calc_convective_periods import convect
 PATHS={'aredi_400':'~/control_aredi800/data/newCO2_control_400_ag/',
        'aredi_800':'~/control_aredi800/data/newCO2_control_800/',
        'aredi_2400':'~/control_aredi800/data/newCO2_control_2400_ag/'
-              #'low_gm': 'data/derived/ocean_temp_low_gm.nc'
+       'low_gm': '~/control_aredi800/data/gm_min_600/'
               }
 
 dic = {}
@@ -47,7 +47,7 @@ for name, PATH in PATHS.iteritems():
 	    dic[name] = dic[name][-500:]
 	    
 ## Calculate OCC ###
-names = {'aredi_400', 'aredi_800', 'aredi_2400'}
+names = {'aredi_400', 'aredi_800', 'aredi_2400', 'low_gm'}
 
 carbon = {}
 carbon_sumz = {}
@@ -96,6 +96,12 @@ ax3 = fig1.add_axes([0.15, 0.25, 0.75, 0.15])
 ax3.scatter((global_carbon_detrend['aredi_2400'])/1e15, carbon_SH_detrend['aredi_2400']/1e15, marker ='.', color = 'k')
 ax3.set_xlabel('Global Carbon Content Anomaly [Pg C]')
 plt.title('(c) A$_{redi}$ = 2400 m$^2$s$^{-1}$', fontsize = 11)
+plt.savefig('notes/aredi_occ_scatter.png', bbox_inches='tight')
+
+ax4 = fig1.add_axes([0.15, 0.1, 0.75, 0.15])
+ax4.scatter((global_carbon_detrend['aredi_2400'])/1e15, carbon_SH_detrend['aredi_2400']/1e15, marker ='.', color = 'k')
+ax4.set_xlabel('Global Carbon Content Anomaly [Pg C]')
+plt.title('(c) GM$_{min}$ = 600 m$^2$s$^{-1}$', fontsize = 11)
 plt.savefig('notes/aredi_occ_scatter.png', bbox_inches='tight')
 
 
