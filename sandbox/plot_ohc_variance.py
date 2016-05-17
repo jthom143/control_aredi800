@@ -50,7 +50,7 @@ for name, PATH in PATHS.iteritems():
         temp[name] = temp[name][:500]
         rhodzt[name] = rhodzt[name][:500]
 
-## Calculate OCC ###
+## Calculate OHC ###
 names = {'aredi_400', 'aredi_800', 'aredi_2400', 'low_gm'}
 
 heat = {}
