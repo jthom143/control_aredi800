@@ -72,10 +72,40 @@ clevs = np.arange(0, 105, 1)
 plt.contourf(lons, lats, variance/1e3, clevs)
 plt.colorbar()
 plt.title('A$_{redi}$ = 800 Carbon Content Variance')
-plt.savefig('notes/figures/aredi800_carbon_variance.png', bbox_inches='tight')
+#plt.savefig('notes/figures/aredi800_carbon_variance.png', bbox_inches='tight')
+
+# Plot the variance for all the simulations
+fig1 = plt.figure(figsize = (12, 6))
+clevs = np.arange(0, 105, 1)
+
+ax1 = plt.subplot(2,2,1)
+variance = carbon_sumz['aredi_400'].collapsed('time', iris.analysis.VARIANCE).data
+lats = carbon_sumz['aredi_400'].coord('latitude').points
+lons = carbon_sumz['aredi_400'].coord('longitude').points
+plt.contourf(lons, lats, variance/1e3, clevs)
+plt.title('A$_{redi}$ = 400')
+
+ax2 = plt.subplot(2,2,2)
+variance = carbon_sumz['aredi_800'].collapsed('time', iris.analysis.VARIANCE).data
+lats = carbon_sumz['aredi_800'].coord('latitude').points
+lons = carbon_sumz['aredi_800'].coord('longitude').points
+plt.contourf(lons, lats, variance/1e3, clevs)
+plt.title('A$_{redi}$ = 800')
+
+ax3 = plt.subplot(2,2,3)
+variance = carbon_sumz['aredi_2400'].collapsed('time', iris.analysis.VARIANCE).data
+lats = carbon_sumz['aredi_2400'].coord('latitude').points
+lons = carbon_sumz['aredi_2400'].coord('longitude').points
+plt.contourf(lons, lats, variance/1e3, clevs)
+plt.title('A$_{redi}$ = 2400')
+
+ax4 = plt.subplot(2,2,4)
+variance = carbon_sumz['low_gm'].collapsed('time', iris.analysis.VARIANCE).data
+lats = carbon_sumz['low_gm'].coord('latitude').points
+lons = carbon_sumz['low_gm'].coord('longitude').points
+plt.contourf(lons, lats, variance/1e3, clevs)
+plt.title('GM$_{min}$ = 600')
+plt.savefig('notes/figures/carbon_variance.png', bbox_inches='tight')
 plt.show()
-
-
-
 
 
