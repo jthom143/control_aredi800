@@ -53,11 +53,11 @@ def calc_zonal_regions(var):
     import iris
 
     # Define constraints for each region:
-    constraint_so = iris.Constraint(latitude=lambda y: -90 < y <= -50)
-    constraint_smidlats = iris.Constraint(latitude=lambda y: -50 < y <= -10)
-    constraint_nmidlats = iris.Constraint(latitude=lambda y: 10 < y <= 50)
-    constraint_arctic = iris.Constraint(latitude=lambda y: 50 < y <= 90)
-    constraint_tropics = iris.Constraint(latitude=lambda y: -10 < y <= 10)
+    constraint_so = iris.Constraint(latitude=lambda y: -90 < y <= -55)
+    constraint_smidlats = iris.Constraint(latitude=lambda y: -55 < y <= -20)
+    constraint_nmidlats = iris.Constraint(latitude=lambda y: 20 < y <= 60)
+    constraint_arctic = iris.Constraint(latitude=lambda y: 60 < y <= 90)
+    constraint_tropics = iris.Constraint(latitude=lambda y: -20 < y <= 20)
 
     var_so = var.extract(constraint_so)
     var_smidlats = var.extract(constraint_smidlats)

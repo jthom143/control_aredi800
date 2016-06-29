@@ -14,10 +14,9 @@ from netCDF4 import Dataset
 from scipy import signal
 
 import sys # access system routines
-sys.path.append('~/control_aredi800/python')
-from calc_OHC_OCC import calc_occ
-import sys # access system routines
-sys.path.append('/home/jthom143/python_functions')
+#sys.path.append('~/control_aredi800/python')
+sys.path.append('/Users/jordanthomas/control_aredi800/python')
+from calc_OHC_OCC import calc_occ, calc_ohc
 import colormaps as cmaps
 
 
@@ -28,14 +27,15 @@ import colormaps as cmaps
 
 # Load Temp Data
 PATHS={'aredi_400':'~/control_aredi800/data/newCO2_control_400_ag/',
-    'aredi_800':'~/control_aredi800/data/newCO2_control_800/',
-        'aredi_2400':'~/control_aredi800/data/newCO2_control_2400_ag/',
-            'low_gm': '~/control_aredi800/data/gm_min_600/'
+       'aredi_800':'~/control_aredi800/data/newCO2_control_800/',
+       'aredi_2400':'~/control_aredi800/data/newCO2_control_2400_ag/',
+       'low_gm': '~/control_aredi800/data/gm_min_600/'
     }
 
 dic = {}
 rhodzt = {}
 area = {}
+temp = {}
 
 print 'loading data for:'
 for name, PATH in PATHS.iteritems():
@@ -43,18 +43,22 @@ for name, PATH in PATHS.iteritems():
     dic[name] = iris.load_cube(PATH+'dic.nc')
     rhodzt[name] = iris.load_cube(PATH+'rho_dzt.nc')
     area[name] = iris.load_cube(PATH+'area_t.nc')
+    temp[name] = iris.load_cube(PATH+'temp.nc')
     
     if name == 'aredi_800':
         dic[name] = dic[name][-500:]
     if name == 'aredi_2400':
         dic[name] = dic[name][:500]
         rhodzt[name] = rhodzt[name][:500]
+        temp[name] = temp[name][:500]
     if name == 'low_gm':
         dic[name] = dic[name][:500]
         rhodzt[name] = rhodzt[name][:500]
+        temp[name] = temp[name][:500]
+
 
 ## Calculate OCC ###
-names = {'aredi_400', 'aredi_800', 'aredi_2400', 'low_gm'}
+names = {'aredi_800'}
 
 carbon = {}
 carbon_sumz = {}
@@ -103,6 +107,7 @@ max_sh = np.argmax(period1_sh)
 
 min = np.argmin(period1)
 min_sh = np.argmin(period1_sh)
+
 
 # Period 2: years 160-260
 p2_start = 160
@@ -237,6 +242,72 @@ datas = datas[p6_start+min6_sh,:,:]-datas[p6_start+min6,:,:]
 ax6.contourf(datas.coord('latitude').points, datas.coord('tcell pstar').points, datas.data, clevs, cmap = 'RdBu_r', extend = 'both')
 plt.savefig('notes/figures/aredi800_occ_min-max_contour.png')
 
+
+### Calculate and Plot OHC
+heat = {}
+heat_sumz = {}
+heat_global = {}
+global_heat_mean = {}
+global_heat_anomaly = {}
+global_heat_detrend = {}
+heat_SH = {}
+heat_SH_anomaly = {}
+heat_SH_detrend = {}
+
+for name in names:
+    heat[name], heat_sumz[name], heat_global[name] = calc_ohc(temp[name], rhodzt[name], area[name])
+    global_heat_mean[name] = heat_global[name].collapsed('time', iris.analysis.MEAN)
+    global_heat_anomaly[name] = heat_global[name].data-global_heat_mean[name].data
+    
+    # Southern Hemisphere:
+    constraint = iris.Constraint(latitude=lambda y: -90 < y < -50)
+    heat_SH_tmp = heat_sumz[name].extract(constraint)
+    area_SH = area[name].extract(constraint)
+    b = heat_SH_tmp*area_SH
+    heat_SH[name] = b.collapsed(['longitude', 'latitude'], iris.analysis.SUM)
+    mean_SH = heat_SH[name].collapsed('time', iris.analysis.MEAN)
+    heat_SH_anomaly[name] = heat_SH[name] - mean_SH
+    
+    # Detrend with polynomial
+    x = np.arange(0, 500, 1)
+    
+    p1 = np.poly1d(np.polyfit(x, global_heat_anomaly[name]/1e22, 4))
+    global_heat_detrend[name] = global_heat_anomaly[name]/1e22 - p1(x)
+    
+    p2 = np.poly1d(np.polyfit(x, heat_SH_anomaly[name].data/1e22, 4))
+    heat_SH_detrend[name] = heat_SH_anomaly[name].data/1e22 - p2(x)
+
+
+f, ((ax1, ax2), (ax3, ax4), (ax5, ax6)) = plt.subplots(3, 2, sharex='col', sharey='row')
+datas = heat['aredi_800'].collapsed('longitude', iris.analysis.MEAN)
+datas = datas[p1_start+min,:,:]-datas[p1_start+max,:,:]
+clevs = np.arange(-3, 3.5, 0.5)
+
+ax1.contourf(datas.coord('latitude').points, datas.coord('tcell pstar').points, datas.data/1e8, clevs, cmap = 'RdBu_r', extend = 'both')
+ax1.invert_yaxis()
+
+datas = heat['aredi_800'].collapsed('longitude', iris.analysis.MEAN)
+datas = datas[p2_start+min2,:,:]-datas[p2_start+max2,:,:]
+ax2.contourf(datas.coord('latitude').points, datas.coord('tcell pstar').points, datas.data/1e8, clevs, cmap = 'RdBu_r', extend = 'both')
+
+datas = heat['aredi_800'].collapsed('longitude', iris.analysis.MEAN)
+datas = datas[p3_start+min3,:,:]-datas[p3_start+max3,:,:]
+ax3.contourf(datas.coord('latitude').points, datas.coord('tcell pstar').points, datas.data/1e8, clevs, cmap = 'RdBu_r', extend = 'both')
+ax3.invert_yaxis()
+
+datas = heat['aredi_800'].collapsed('longitude', iris.analysis.MEAN)
+datas = datas[p4_start+min4,:,:]-datas[p4_start+max4,:,:]
+ax4.contourf(datas.coord('latitude').points, datas.coord('tcell pstar').points, datas.data/1e8, clevs, cmap = 'RdBu_r', extend = 'both')
+
+datas = heat['aredi_800'].collapsed('longitude', iris.analysis.MEAN)
+datas = datas[p5_start+min5,:,:]-datas[p5_start+max5,:,:]
+ax5.contourf(datas.coord('latitude').points, datas.coord('tcell pstar').points, datas.data/1e8, clevs, cmap = 'RdBu_r', extend = 'both')
+ax5.invert_yaxis()
+
+datas = heat['aredi_800'].collapsed('longitude', iris.analysis.MEAN)
+datas = datas[p6_start+min6_sh,:,:]-datas[p6_start+min6,:,:]
+ax6.contourf(datas.coord('latitude').points, datas.coord('tcell pstar').points, datas.data/1e8, clevs, cmap = 'RdBu_r', extend = 'both')
+plt.savefig('notes/figures/aredi800_ohc_min-max_contour.png')
 
 
 

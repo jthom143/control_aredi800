@@ -129,6 +129,7 @@ plt.text(390,5.1, 'Global', color = 'k')
 plt.xlim([0, 500])
 plt.xlabel('Time [years]')
 plt.ylabel('Heat content anomaly [10$^{22}$ J]')
+plt.axhline(0, color = 'k', ls = '--')
 plt.savefig('/home/jthom143/control_aredi800/notes/figures/ohc_regions.png')
 
 fig = plt.figure()
@@ -144,5 +145,224 @@ plt.plot(sum, color = 'k', ls = '--', lw = 2)
 plt.xlim([100, 200])
 plt.xlabel('Time [years]')
 plt.ylabel('Heat content anomaly [10$^{22}$ J]')
+
+
+## Divide up into convective cycles
+# Divide timeseries up into maxima/minima cycles
+# Period 1: years 60-160
+p1_start = 60
+p1_end = 160
+
+# Period 2: years 160-260
+p2_start = 160
+p2_end = 260
+
+# Period 3: years 260-300
+p3_start = 260
+p3_end = 300
+
+# Period 4: years 300-360
+p4_start = 300
+p4_end = 360
+
+# Period 5: years 360-420
+p5_start = 360
+p5_end = 420
+
+# Period 6: years 420-500
+p6_start = 420
+
+
+f, ((ax1, ax2), (ax3, ax4), (ax5, ax6)) = plt.subplots(3, 2, sharex='col', sharey='row')
+ax1.plot(SO_detrend[p1_start:p1_end]/1e22, label = 'Southern Ocean')
+ax1.plot(SMid_detrend[p1_start:p1_end]/1e22, label = 'Southern Hemisphere Mid-Lats')
+ax1.plot(NMid_detrend[p1_start:p1_end]/1e22, label = 'Northern Hemisphere Mid-Lats')
+ax1.plot(tropics_detrend[p1_start:p1_end]/1e22, label = 'Tropics')
+ax1.plot(arctic_detrend[p1_start:p1_end]/1e22, label = 'Arctic')
+ax1.plot(global_heat_detrend[p1_start:p1_end]/1e22, color = 'k', lw = 2)
+ax1.axhline(0, color = 'k', ls = '--')
+ax1.set_title('Period 1 **', fontsize = 10)
+
+
+ax2.plot(SO_detrend[p2_start:p2_end]/1e22, label = 'Southern Ocean')
+ax2.plot(SMid_detrend[p2_start:p2_end]/1e22, label = 'Southern Hemisphere Mid-Lats')
+ax2.plot(NMid_detrend[p2_start:p2_end]/1e22, label = 'Northern Hemisphere Mid-Lats')
+ax2.plot(tropics_detrend[p2_start:p2_end]/1e22, label = 'Tropics')
+ax2.plot(arctic_detrend[p2_start:p2_end]/1e22, label = 'Arctic')
+ax2.plot(global_heat_detrend[p2_start:p2_end]/1e22, color = 'k', lw = 2)
+ax2.axhline(0, color = 'k', ls = '--')
+ax2.set_title('Period 2 **', fontsize = 10)
+
+ax3.plot(SO_detrend[p3_start:p3_end]/1e22, label = 'Southern Ocean')
+ax3.plot(SMid_detrend[p3_start:p3_end]/1e22, label = 'Southern Hemisphere Mid-Lats')
+ax3.plot(NMid_detrend[p3_start:p3_end]/1e22, label = 'Northern Hemisphere Mid-Lats')
+ax3.plot(tropics_detrend[p3_start:p3_end]/1e22, label = 'Tropics')
+ax3.plot(arctic_detrend[p3_start:p3_end]/1e22, label = 'Arctic')
+ax3.plot(global_heat_detrend[p3_start:p3_end]/1e22, color = 'k', lw = 2)
+ax3.axhline(0, color = 'k', ls = '--')
+ax3.set_title('Period 3', fontsize = 10)
+
+ax4.plot(SO_detrend[p4_start:p4_end]/1e22, label = 'Southern Ocean')
+ax4.plot(SMid_detrend[p4_start:p4_end]/1e22, label = 'Southern Hemisphere Mid-Lats')
+ax4.plot(NMid_detrend[p4_start:p4_end]/1e22, label = 'Northern Hemisphere Mid-Lats')
+ax4.plot(tropics_detrend[p4_start:p4_end]/1e22, label = 'Tropics')
+ax4.plot(arctic_detrend[p4_start:p4_end]/1e22, label = 'Arctic')
+ax4.plot(global_heat_detrend[p4_start:p4_end]/1e22, color = 'k', lw = 2)
+ax4.axhline(0, color = 'k', ls = '--')
+ax4.set_title('Period 4', fontsize = 10)
+
+ax5.plot(SO_detrend[p5_start:p5_end]/1e22, label = 'Southern Ocean')
+ax5.plot(SMid_detrend[p5_start:p5_end]/1e22, label = 'Southern Hemisphere Mid-Lats')
+ax5.plot(NMid_detrend[p5_start:p5_end]/1e22, label = 'Northern Hemisphere Mid-Lats')
+ax5.plot(tropics_detrend[p5_start:p5_end]/1e22, label = 'Tropics')
+ax5.plot(arctic_detrend[p5_start:p5_end]/1e22, label = 'Arctic')
+ax5.plot(global_heat_detrend[p5_start:p5_end]/1e22, color = 'k', lw = 2)
+ax5.axhline(0, color = 'k', ls = '--')
+ax5.set_title('Period 5 **', fontsize = 10)
+
+ax6.plot(SO_detrend[p6_start:]/1e22, label = 'Southern Ocean')
+ax6.plot(SMid_detrend[p6_start:]/1e22, label = 'Southern Hemisphere Mid-Lats')
+ax6.plot(NMid_detrend[p6_start:]/1e22, label = 'Northern Hemisphere Mid-Lats')
+ax6.plot(tropics_detrend[p6_start:]/1e22, label = 'Tropics')
+ax6.plot(arctic_detrend[p6_start:]/1e22, label = 'Arctic')
+ax6.plot(global_heat_detrend[p6_start:]/1e22, color = 'k', lw = 2)
+ax6.axhline(0, color = 'k', ls = '--')
+ax6.set_title('Period 6', fontsize = 10)
+
+
+
+f, ((ax1, ax2), (ax3, ax4), (ax5, ax6)) = plt.subplots(3, 2, sharex='col', sharey='row')
+ax1.plot((SO_detrend[p1_start:p1_end]+ tropics_detrend[p1_start:p1_end])/1e22, color =  'b')
+ax1.plot((SO_detrend[p1_start:p1_end]+ SMid_detrend[p1_start:p1_end])/1e22, color = 'k')
+ax1.axhline(0, color = 'k', ls = '--')
+ax1.set_title('Period 1', fontsize = 10)
+
+
+ax2.plot(SO_detrend[p2_start:p2_end]/1e22 +  tropics_detrend[p2_start:p2_end]/1e22, color =  'b')
+ax2.plot(SO_detrend[p2_start:p2_end]/1e22 +  SMid_detrend[p2_start:p2_end]/1e22, color = 'k')
+ax2.axhline(0, color = 'k', ls = '--')
+ax2.set_title('Period 2', fontsize = 10)
+
+ax3.plot(SO_detrend[p3_start:p3_end]/1e22 +  tropics_detrend[p3_start:p3_end]/1e22, color =  'b')
+ax3.plot(SO_detrend[p3_start:p3_end]/1e22 +  SMid_detrend[p3_start:p3_end]/1e22, color = 'k')
+ax3.axhline(0, color = 'k', ls = '--')
+ax3.set_title('Period 3', fontsize = 10)
+
+ax4.plot(SO_detrend[p4_start:p4_end]/1e22 +  tropics_detrend[p4_start:p4_end]/1e22, color =  'b')
+ax4.plot(SO_detrend[p4_start:p4_end]/1e22 +  SMid_detrend[p4_start:p4_end]/1e22, color = 'k')
+ax4.axhline(0, color = 'k', ls = '--')
+ax4.set_title('Period 4', fontsize = 10)
+
+ax5.plot(SO_detrend[p5_start:p5_end]/1e22 +  tropics_detrend[p5_start:p5_end]/1e22, color =  'b')
+ax5.plot(SO_detrend[p5_start:p5_end]/1e22 +  SMid_detrend[p5_start:p5_end]/1e22, color = 'k')
+ax5.axhline(0, color = 'k', ls = '--')
+ax5.set_title('Period 5', fontsize = 10)
+
+ax6.plot(SO_detrend[p6_start:]/1e22 +  tropics_detrend[p6_start:]/1e22, color =  'b')
+ax6.plot(SO_detrend[p6_start:]/1e22 +  SMid_detrend[p6_start:]/1e22, color = 'k')
+ax6.axhline(0, color = 'k', ls = '--')
+ax6.set_title('Period 6', fontsize = 10)
+
+
+
+### Detrended
+
+
+f, ((ax1, ax2), (ax3, ax4), (ax5, ax6)) = plt.subplots(3, 2, sharex='col', sharey='row')
+ax1.plot(SO_smooth[p1_start:p1_end]/1e22, label = 'Southern Ocean')
+ax1.plot(SMid_smooth[p1_start:p1_end]/1e22, label = 'Southern Hemisphere Mid-Lats')
+ax1.plot(NMid_smooth[p1_start:p1_end]/1e22, label = 'Northern Hemisphere Mid-Lats')
+ax1.plot(tropics_smooth[p1_start:p1_end]/1e22, label = 'Tropics')
+ax1.plot(arctic_smooth[p1_start:p1_end]/1e22, label = 'Arctic')
+ax1.plot(global_heat_smooth[p1_start:p1_end]/1e22, color = 'k', lw = 2)
+ax1.axhline(0, color = 'k', ls = '--')
+ax1.set_title('Period 1 **', fontsize = 10)
+
+
+ax2.plot(SO_smooth[p2_start:p2_end]/1e22, label = 'Southern Ocean')
+ax2.plot(SMid_smooth[p2_start:p2_end]/1e22, label = 'Southern Hemisphere Mid-Lats')
+ax2.plot(NMid_smooth[p2_start:p2_end]/1e22, label = 'Northern Hemisphere Mid-Lats')
+ax2.plot(tropics_smooth[p2_start:p2_end]/1e22, label = 'Tropics')
+ax2.plot(arctic_smooth[p2_start:p2_end]/1e22, label = 'Arctic')
+ax2.plot(global_heat_smooth[p2_start:p2_end]/1e22, color = 'k', lw = 2)
+ax2.axhline(0, color = 'k', ls = '--')
+ax2.set_title('Period 2 **', fontsize = 10)
+
+ax3.plot(SO_smooth[p3_start:p3_end]/1e22, label = 'Southern Ocean')
+ax3.plot(SMid_smooth[p3_start:p3_end]/1e22, label = 'Southern Hemisphere Mid-Lats')
+ax3.plot(NMid_smooth[p3_start:p3_end]/1e22, label = 'Northern Hemisphere Mid-Lats')
+ax3.plot(tropics_smooth[p3_start:p3_end]/1e22, label = 'Tropics')
+ax3.plot(arctic_smooth[p3_start:p3_end]/1e22, label = 'Arctic')
+ax3.plot(global_heat_smooth[p3_start:p3_end]/1e22, color = 'k', lw = 2)
+ax3.axhline(0, color = 'k', ls = '--')
+ax3.set_title('Period 3', fontsize = 10)
+
+ax4.plot(SO_smooth[p4_start:p4_end]/1e22, label = 'Southern Ocean')
+ax4.plot(SMid_smooth[p4_start:p4_end]/1e22, label = 'Southern Hemisphere Mid-Lats')
+ax4.plot(NMid_smooth[p4_start:p4_end]/1e22, label = 'Northern Hemisphere Mid-Lats')
+ax4.plot(tropics_smooth[p4_start:p4_end]/1e22, label = 'Tropics')
+ax4.plot(arctic_smooth[p4_start:p4_end]/1e22, label = 'Arctic')
+ax4.plot(global_heat_smooth[p4_start:p4_end]/1e22, color = 'k', lw = 2)
+ax4.axhline(0, color = 'k', ls = '--')
+ax4.set_title('Period 4', fontsize = 10)
+
+ax5.plot(SO_smooth[p5_start:p5_end]/1e22, label = 'Southern Ocean')
+ax5.plot(SMid_smooth[p5_start:p5_end]/1e22, label = 'Southern Hemisphere Mid-Lats')
+ax5.plot(NMid_smooth[p5_start:p5_end]/1e22, label = 'Northern Hemisphere Mid-Lats')
+ax5.plot(tropics_smooth[p5_start:p5_end]/1e22, label = 'Tropics')
+ax5.plot(arctic_smooth[p5_start:p5_end]/1e22, label = 'Arctic')
+ax5.plot(global_heat_smooth[p5_start:p5_end]/1e22, color = 'k', lw = 2)
+ax5.axhline(0, color = 'k', ls = '--')
+ax5.set_title('Period 5 **', fontsize = 10)
+
+ax6.plot(SO_smooth[p6_start:]/1e22, label = 'Southern Ocean')
+ax6.plot(SMid_smooth[p6_start:]/1e22, label = 'Southern Hemisphere Mid-Lats')
+ax6.plot(NMid_smooth[p6_start:]/1e22, label = 'Northern Hemisphere Mid-Lats')
+ax6.plot(tropics_smooth[p6_start:]/1e22, label = 'Tropics')
+ax6.plot(arctic_smooth[p6_start:]/1e22, label = 'Arctic')
+ax6.plot(global_heat_smooth[p6_start:]/1e22, color = 'k', lw = 2)
+ax6.axhline(0, color = 'k', ls = '--')
+ax6.set_title('Period 6', fontsize = 10)
+plt.savefig('/home/jthom143/control_aredi800/notes/figures/ohc_regions_periods.png')
+
+
+
+f, ((ax1, ax2), (ax3, ax4), (ax5, ax6)) = plt.subplots(3, 2, sharex='col', sharey='row')
+ax1.plot((SO_smooth[p1_start:p1_end]+ tropics_smooth[p1_start:p1_end]+ SMid_smooth[p1_start:p1_end])/1e22, color =  'b')
+ax1.plot(global_heat_smooth[p1_start:p1_end]/1e22, color = 'k', lw = 2)
+ax1.axhline(0, color = 'k', ls = '--')
+ax1.set_title('Period 1', fontsize = 10)
+
+
+ax2.plot((SO_smooth[p2_start:p2_end]+ tropics_smooth[p2_start:p2_end]+ SMid_smooth[p2_start:p2_end])/1e22, color =  'b')
+ax2.plot(global_heat_smooth[p2_start:p2_end]/1e22, color = 'k', lw = 2)
+ax2.axhline(0, color = 'k', ls = '--')
+ax2.set_title('Period 2', fontsize = 10)
+
+ax3.plot((SO_smooth[p3_start:p3_end]+ tropics_smooth[p3_start:p3_end]+ SMid_smooth[p3_start:p3_end])/1e22, color =  'b')
+ax3.plot(global_heat_smooth[p3_start:p3_end]/1e22, color = 'k', lw = 2)
+ax3.axhline(0, color = 'k', ls = '--')
+ax3.set_title('Period 3', fontsize = 10)
+
+ax4.plot((SO_smooth[p4_start:p4_end]+ tropics_smooth[p4_start:p4_end]+ SMid_smooth[p4_start:p4_end])/1e22, color =  'b')
+ax4.plot(global_heat_smooth[p4_start:p4_end]/1e22, color = 'k', lw = 2)
+ax4.axhline(0, color = 'k', ls = '--')
+ax4.set_title('Period 4', fontsize = 10)
+
+ax5.plot((SO_smooth[p5_start:p5_end]+ tropics_smooth[p5_start:p5_end]+ SMid_smooth[p5_start:p5_end])/1e22, color =  'b')
+ax5.plot(global_heat_smooth[p5_start:p5_end]/1e22, color = 'k', lw = 2)
+ax5.axhline(0, color = 'k', ls = '--')
+ax5.set_title('Period 5', fontsize = 10)
+
+ax6.plot((SO_smooth[p6_start:]+ tropics_smooth[p6_start:]+ SMid_smooth[p6_start:])/1e22, color =  'b')
+ax6.plot(global_heat_smooth[p6_start:]/1e22, color = 'k', lw = 2)
+ax6.axhline(0, color = 'k', ls = '--')
+ax6.set_title('Period 6', fontsize = 10)
+
+
+
+
+
+
 plt.show()
 
