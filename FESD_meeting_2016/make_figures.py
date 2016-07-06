@@ -7,16 +7,16 @@ import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import sys # access system routines
 
-#sys.path.append('~/control_aredi800/python')
-sys.path.append('/Users/jordanthomas/control_aredi800/python')
+sys.path.append('~/control_aredi800/python')
+#sys.path.append('/Users/jordanthomas/control_aredi800/python')
 
 import colormaps as cmaps
 from calc_region import calc_six_regions, calc_zonal_regions
 from smooth import smooth
 
 # Load data from '/home/jthom143/control_aredi800/FESD_meeting_2016/data/'
-#PATH = '/home/jthom143/control_aredi800/FESD_meeting_2016/data/'
-PATH = '/Users/jordanthomas/control_aredi800/FESD_meeting_2016/data/'
+PATH = '/home/jthom143/control_aredi800/FESD_meeting_2016/data/'
+#PATH = '/Users/jordanthomas/control_aredi800/FESD_meeting_2016/data/'
 
 temp_ws       = iris.load_cube(PATH + 'temp_ws.nc')
 mld_ws        = iris.load_cube(PATH + 'mld_ws.nc')
