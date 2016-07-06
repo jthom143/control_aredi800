@@ -24,16 +24,15 @@ name = '800'
 
 # Import geolat_t
 fh = Dataset('/datascope/gnana_esms/jthom143/newCO2_control/ocean_hgrid.nc', mode = 'r')
-dy = fh.variables['dy'][:]
-dy = dy[:,40]
+dy_1 = fh.variables['dy'][:]
+dy_1 = dy_1[:,40]
 
 dy_new = np.zeros(80)
 
 i = 0
 for x in range(0,80):
-    dy_new[x] = dy[i]+dy[i+1]
+    dy_new[x] = dy_1[i]+dy_1[i+1]
     i = i+2
-
 
 # Load Temp Data
 PATHS={'aredi_800':'~/control_aredi800/data/newCO2_control_800/'}
@@ -49,6 +48,10 @@ for name, PATH in PATHS.iteritems():
     evap_flx = iris.load_cube(PATH+'evap_heat.nc')
     area = iris.load_cube(PATH+'area_t.nc')
 
+# Save dy_new as a cube
+lats = sw_flx.coord('latitude')
+dy_new_cube = iris.cube.Cube(dy_new,  dim_coords_and_dims=None, units = 'm')
+iris.save(dy_new_cube, 'dy.nc')
 
 # Zonally Average
 sw_flx_zonalavg = sw_flx.collapsed('longitude', iris.analysis.MEAN)
